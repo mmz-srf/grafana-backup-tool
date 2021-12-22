@@ -1,9 +1,9 @@
 {
   "general": {
-    "debug": true,
-    "verify_ssl": true,
+    "debug": false,
+    "verify_ssl": false,
     "backup_dir": "_OUTPUT_",
-    "backup_file_format": "%Y%m%d%H%M",
+    "backup_file_format": "%Y%m%d%H%M%S",
     "pretty_print": false
   },
   "grafana": {

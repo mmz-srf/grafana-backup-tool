@@ -34,9 +34,14 @@ def get_all_folders_in_grafana(grafana_url, http_get_headers, verify_ssl, client
     if status == 200:
         folders = content
         print("There are {0} folders:".format(len(content)))
+        foldersnew=[]
         for folder in folders:
-            print("name: {0}".format(to_python2_and_3_compatible_string(folder['title'])))
-        return folders
+            foldersnew.append(folder)
+            print("Folder name: {0}".format(to_python2_and_3_compatible_string(folder['title'])))
+            if to_python2_and_3_compatible_string(folder['title']) == 'Cargo':
+                foldersnew.remove(folder)
+                print("Name of removed folder: {0}".format(to_python2_and_3_compatible_string(folder['title'])))
+        return foldersnew
     else:
         print("get folders failed, status: {0}, msg: {1}".format(status, content))
         return []
