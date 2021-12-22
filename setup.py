@@ -19,8 +19,8 @@ setup(
     long_description_content_type='text/markdown',
     long_description=open('README.md', 'r').read(),
     author="author",
-    author_email="ysde108@gmail.com",
-    url="https://github.com/ysde/grafana-backup-tool",
+    author_email="noreply@srf.ch",
+    url="https://github.com/mmz-srf/grafana-backup-tool",
     entry_points={
         'console_scripts': [
             'grafana-backup = grafana_backup.cli:main'
