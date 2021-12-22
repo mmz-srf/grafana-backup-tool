@@ -38,9 +38,18 @@ def get_all_dashboards_in_grafana(page, limit, grafana_url, http_get_headers, ve
     if status == 200:
         dashboards = content
         print("There are {0} dashboards:".format(len(dashboards)))
+        dashboardsnew=[]
         for board in dashboards:
-            print('name: {0}'.format(to_python2_and_3_compatible_string(board['title'])))
-        return dashboards
+            dashboardsnew.append(board)
+            print('Board name: {0}'.format(to_python2_and_3_compatible_string(board['title'])))
+            if "folderTitle" in board:
+                print('Folder: {0}'.format(to_python2_and_3_compatible_string(board['folderTitle'])))
+                if to_python2_and_3_compatible_string(board['folderTitle']) == 'Cargo':
+                    dashboardsnew.remove(board)
+                    print("Name of removed board as it's provided automatically: {0}".format(to_python2_and_3_compatible_string(board['title'])))
+            else:
+                 print('No folder found for dashboard: {0}'.format(to_python2_and_3_compatible_string(board['title'])))
+        return dashboardsnew
     else:
         print("get dashboards failed, status: {0}, msg: {1}".format(status, content))
         return []
